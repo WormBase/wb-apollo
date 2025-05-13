@@ -14,3 +14,8 @@ services:
       - WEBAPOLLO_DB_NAME=apollo-release-production
       - WEBAPOLLO_DB_USERNAME # Postgres user, to be defined through externally exported env vars
       - WEBAPOLLO_DB_PASSWORD # Postgres password, to be defined through externally exported env vars
+      # Chado postgres DB credentials and details
+      - WEBAPOLLO_USE_CHADO=true
+      - CHADO_DB_NAME=apollo-production-chado
+      - CHADO_DB_USERNAME     # Postgres user, to be defined through externally exported env vars
+      - CHADO_DB_PASSWORD     # Postgres user, to be defined through externally exported env vars
