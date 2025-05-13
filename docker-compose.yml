@@ -8,3 +8,13 @@ services:
       service: apollo-service
     ports:
       - "8888:8080"
+  apollo-import-export:
+    container_name: apollo.import.export
+    extends:
+      file: apollo-service-commons.yml
+      service: apollo-service
+    volumes:
+      - "./apollo_backups:/apollo_backups"
+    tty: true
+    stdin_open: true
+    command: /bin/bash
