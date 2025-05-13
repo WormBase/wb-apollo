@@ -1,0 +1,10 @@
+services:
+  wb-apollo-server:
+    container_name: wb.apollo.server
+    environment:
+      - APOLLO_PATH=apollo
+    extends:
+      file: apollo-service-commons.yml
+      service: apollo-service
+    ports:
+      - "8888:8080"

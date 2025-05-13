@@ -1,0 +1,16 @@
+services:
+  apollo-service:
+    image: gmod/apollo:release-2.8.1
+    volumes:
+      - "/data/jbrowse_data/:/data"
+      - "/data/postgres_data:/var/lib/postgresql"
+      - "/data/temp_apollo_data:/temp_apollo_data"
+    environment:
+      - WEBAPOLLO_COMMON_DATA=/temp_apollo_data
+      # Web interface admin credentials
+      - APOLLO_ADMIN_EMAIL    # Apollo web admin user, to be defined through externally exported env vars
+      - APOLLO_ADMIN_PASSWORD # Apollo web admin password, to be defined through externally exported env vars
+      # Core postgres DB credentials and details
+      - WEBAPOLLO_DB_NAME=apollo-release-production
+      - WEBAPOLLO_DB_USERNAME # Postgres user, to be defined through externally exported env vars
+      - WEBAPOLLO_DB_PASSWORD # Postgres password, to be defined through externally exported env vars
