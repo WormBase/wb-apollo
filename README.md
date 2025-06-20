@@ -79,3 +79,7 @@ to be used by the Apollo service defined in this repository, do the following st
     docker exec -it wb.apollo.server psql -c "ALTER TABLE chadoprop ADD COLUMN cvterm_id int8 not null DEFAULT 1"
     docker compose restart wb-apollo-server
     ```
+12. After successful server startup, browse to the web interface (`http://<IP>:8888/apollo/annotator/index`) and log in using the admin user.
+    If you get the notification pop-up stating "Unable to write to directory apollo_data.",
+    fill in the new apollo temp data directory path (`/temp_apollo_data`) in the textbox below
+    and click the "update common data path" button below.
