@@ -2,9 +2,9 @@ services:
   apollo-service:
     image: gmod/apollo:release-2.8.1
     volumes:
-      - "/data/jbrowse_data/:/data"
-      - "/data/postgres_data:/var/lib/postgresql"
-      - "/data/temp_apollo_data:/temp_apollo_data"
+      - "${APOLLO_DATA_VOLUME?}/jbrowse_data/:/data"
+      - "${APOLLO_DATA_VOLUME?}/postgres_data:/var/lib/postgresql"
+      - "${APOLLO_DATA_VOLUME?}/temp_apollo_data:/temp_apollo_data"
     environment:
       - WEBAPOLLO_COMMON_DATA=/temp_apollo_data
       # Web interface admin credentials

@@ -26,18 +26,19 @@ to be used by the Apollo service defined in this repository, do the following st
  4. Once the snapshot from step 1 completed, restore it as a new volume and attach it to the new instance.
  5. Mount the new volume (assumed attachment on `/dev/sdg` and OS Ubuntu):
     ```bash
-    $ mount /dev/xvdg /data
+    $ export APOLLO_DATA_VOLUME=/data
+    $ mount /dev/xvdg ${APOLLO_DATA_VOLUME}
     ```
  6. If the root of this volume contains the JBrowse data files (subfolders for each species, rather than JBrowse/Postgres/Apollo data separation),
     reorganise the data on it (on the new instance):
-     * All JBrowse data folders go in a folder `/data/jbrowse_data`
+     * All JBrowse data folders go in a folder `${APOLLO_DATA_VOLUME}/jbrowse_data`
        ```bash
-       $ cd /data
+       $ cd ${APOLLO_DATA_VOLUME}
        $ mkdir jbrowse_data/
        $ mv * jbrowse_data/
        ```
-     * Make an empty folder `/data/temp_apollo_data`, for temporary apollo files.
-     * Make a empty folder `/data/postgres_data`, for permanent postgres DB storage.
+     * Make an empty folder `./temp_apollo_data` in the Apollo data volume, for temporary apollo files.
+     * Make a empty folder `./postgres_data`, in the Apollo data volume, for permanent postgres DB storage.
  4. Export all required environment variables with the appropiate DB credentials
     (see the [appollo-service-commons.yml](./appollo-service-commons.yml) file for a list of variables used).
     Use an extra space before each export command so the secrets don't get stored to bash history (` export VAR_NAME=secret`).
