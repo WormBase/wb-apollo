@@ -7,7 +7,7 @@ services:
       file: apollo-service-commons.yml
       service: apollo-service
     ports:
-      - "8888:8080"
+      - "8080:8080"
   apollo-import-export:
     container_name: apollo.import.export
     extends:
