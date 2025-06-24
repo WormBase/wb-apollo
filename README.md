@@ -40,8 +40,9 @@ to be used by the Apollo service defined in this repository, do the following st
        $ mkdir jbrowse_data/
        $ mv * jbrowse_data/
        ```
-     * Make an empty folder `./temp_apollo_data` in the Apollo data volume, for temporary apollo files.
-     * Make a empty folder `./postgres_data`, in the Apollo data volume, for permanent postgres DB storage.
+     * Make an empty folder `./temp_apollo/data` in the Apollo data volume, for temporary apollo intermediate files.
+     * Make an empty folder `./temp_apollo/io` in the Apollo data volume, for file transfer between container and host system.
+     * Make an empty folder `./postgres_data`, in the Apollo data volume, for permanent postgres DB storage.
  4. Export all required environment variables with the appropiate DB credentials
     (see the [appollo-service-commons.yml](./appollo-service-commons.yml) file for a list of variables used).
     Use an extra space before each export command so the secrets don't get stored to bash history (` export VAR_NAME=secret`).
@@ -84,5 +85,18 @@ to be used by the Apollo service defined in this repository, do the following st
     ```
 12. After successful server startup, browse to the web interface (`http://<IP>:8080/apollo/annotator/index`) and log in using the admin user.
     If you get the notification pop-up stating "Unable to write to directory apollo_data.",
-    fill in the new apollo temp data directory path (`/temp_apollo_data`) in the textbox below
+    fill in the new apollo temp data directory path (`/temp_apollo/data`) in the textbox below
     and click the "update common data path" button below.
+
+## CLI scripting
+The Apollo container provides a set of CLI scripts and utilities for batch import/export and track management,
+in the `$CATALINA_BASE/webapps/apollo/jbrowse/bin/` directory (`/var/lib/tomcat9/webapps/apollo/jbrowse/bin/` when using Apollo 2.8.1).
+To use any of the Apollo CLI scripts:
+```bash
+docker exec wb.apollo.server sh -c 'perl $CATALINA_BASE/webapps/apollo/jbrowse/bin/script-name.pl --arguments'
+```
+Keep in mind that since this runs the process in the apollo container, paths available to it are also defined by the container environment:
+ * jbrowse track files found in the `jbrowse_data` subdirectory of the apollo volume on the host system,
+   live under `/data` in the container.
+ * Files put into the `temp_apollo/io` subdirectory in the apollo data volume
+   can be accessed within the container at `/temp_apollo/io` and vice versa.

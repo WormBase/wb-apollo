@@ -4,9 +4,9 @@ services:
     volumes:
       - "${APOLLO_DATA_VOLUME?}/jbrowse_data/:/data"
       - "${APOLLO_DATA_VOLUME?}/postgres_data:/var/lib/postgresql"
-      - "${APOLLO_DATA_VOLUME?}/temp_apollo_data:/temp_apollo_data"
+      - "${APOLLO_DATA_VOLUME?}/temp_apollo:/temp_apollo"
     environment:
-      - WEBAPOLLO_COMMON_DATA=/temp_apollo_data
+      - WEBAPOLLO_COMMON_DATA=/temp_apollo/data
       # Web interface admin credentials
       - APOLLO_ADMIN_EMAIL=${APOLLO_ADMIN_EMAIL?}    # Apollo web admin user, to be defined through externally exported env vars
       - APOLLO_ADMIN_PASSWORD=${APOLLO_ADMIN_PASSWORD?} # Apollo web admin password, to be defined through externally exported env vars
