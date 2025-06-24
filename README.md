@@ -49,7 +49,7 @@ to be used by the Apollo service defined in this repository, do the following st
     Let it complete startup (to create the necessary DB roles), then stop the process (ctrl+C or cmd+.)
  6. Open a terminal into an appollo service container, with all data volumes mounted:
     ```bash
-    $ docker compose run apollo-import-export
+    $ docker compose run --rm apollo-import-export
     ```
  7. In this container, start the postgres server.
     ```bash
