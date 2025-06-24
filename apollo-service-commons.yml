@@ -11,12 +11,11 @@ services:
       - APOLLO_ADMIN_EMAIL=${APOLLO_ADMIN_EMAIL?}    # Apollo web admin user, to be defined through externally exported env vars
       - APOLLO_ADMIN_PASSWORD=${APOLLO_ADMIN_PASSWORD?} # Apollo web admin password, to be defined through externally exported env vars
       # Core postgres DB credentials and details
-      - WEBAPOLLO_DB_NAME=apollo-release-production
-      - WEBAPOLLO_DB_USERNAME=${WEBAPOLLO_DB_USERNAME?} # Postgres user, to be defined through externally exported env vars
+      - WEBAPOLLO_DB_NAME=apollo
+      - WEBAPOLLO_DB_USERNAME=apollo # Postgres user, to be defined through externally exported env vars
       - WEBAPOLLO_DB_PASSWORD=${WEBAPOLLO_DB_PASSWORD?} # Postgres password, to be defined through externally exported env vars
-      # TODO: figure out if chado DB usage is currently failing core functionality like removing the default DB admin user
       # Chado postgres DB credentials and details
       - WEBAPOLLO_USE_CHADO=true
-      - CHADO_DB_NAME=apollo-production-chado
-      - CHADO_DB_USERNAME=${CHADO_DB_USERNAME?}     # Postgres user, to be defined through externally exported env vars
+      - CHADO_DB_NAME=chado
+      - CHADO_DB_USERNAME=apollo     # Postgres user, to be defined through externally exported env vars
       - CHADO_DB_PASSWORD=${CHADO_DB_PASSWORD?}     # Postgres user, to be defined through externally exported env vars

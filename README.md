@@ -59,13 +59,13 @@ to be used by the Apollo service defined in this repository, do the following st
     ```bash
     dropdb $WEBAPOLLO_DB_NAME
     createdb -E UTF-8 -O $WEBAPOLLO_DB_USERNAME $WEBAPOLLO_DB_NAME
-    pg_restore -d $WEBAPOLLO_DB_NAME ./apollo_backups/apollo-release-production.pg_dump
+    pg_restore --no-owner -d $WEBAPOLLO_DB_NAME ./apollo_backups/apollo-release-production.pg_dump
     ```
  9. Drop and restore the chado postgres database.
     ```bash
     dropdb $CHADO_DB_NAME
     createdb -E UTF-8 -O $CHADO_DB_USERNAME $CHADO_DB_NAME
-    pg_restore -d $CHADO_DB_NAME ./apollo_backups/apollo-production-chado.pg_dump
+    pg_restore --no-owner -d $CHADO_DB_NAME ./apollo_backups/apollo-production-chado.pg_dump
     ```
 10. Exit the import/export container (ctrl+d) and start the apollo service again
     (this time in the background).
