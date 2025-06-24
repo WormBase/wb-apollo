@@ -6,8 +6,11 @@ New instances are current set up manually. To setup a new instance (for OS upgra
  1. Start a new machine (any linux OS)
  2. Install docker (if not pre-installed)
  3. Copy the [docker-compose.yml](./docker-compose.yml) and the [apollo-service-commons.yml](./apollo-service-commons.yml) files onto the machine.
- 4. Migrate the data if required (see [below](#apollo-data-migration))
- 5. Start the appolo server daemon (if not already done so during data migration):
+ 4. Migrate the data if required (see [below](#apollo-data-migration)).
+    If no migration was required, continue below steps.
+ 5. Set all environment variables used and required by docker compose (if not already done so during data migration).
+    Required variables are coded as `${VAR_NAME?}` in the [apollo-service-commons.yml](./apollo-service-commons.yml) file.
+ 6. Start the appolo server daemon (if not already done so during data migration):
     ```bash
     docker compose up -d wb-apollo-server
     ```
